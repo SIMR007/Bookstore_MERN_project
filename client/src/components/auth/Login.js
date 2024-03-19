@@ -16,7 +16,7 @@ function Login() {
 
   const navigate = useNavigate();
   const userNameorEmail = useRef();
-  const password = useRef();
+  const password = useRef()
 
 
   const loginHandler = async(event) => {
