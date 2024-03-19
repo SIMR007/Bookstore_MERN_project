@@ -3,7 +3,6 @@ import { User } from "../models/UserModel.js";
 import jwt from "jsonwebtoken";
 import cors from "cors";
 import bodyParser from "body-parser"
-// import { JWTtoken } from "../auth/jwt/app.js";
 
 const UserRouter = express.Router();
 const secretKey =  "secretkey";
