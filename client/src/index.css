@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.Gradient_button{
+    background: linear-gradient(88.75deg, #89729E 2.81%, #95A983 20.74%, #E3C370 43.18%, #FE9593 65.65%, #E85F5D 83.58%);
+    width: 100%;
+    padding: 15px;
+  }
