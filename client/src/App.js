@@ -14,12 +14,14 @@ import { ToastContainer } from "react-toastify";
 import Dashboard from "./components/dashboard/Dashboard";
 import Error from "./components/error/Error"
 import Navbar from "./components/navbar/Navbar";
+
+
 export default function App() {
 
 
   return (
     <>
-    <BrowserRouter>
+    {/* <BrowserRouter> */}
     <Navbar/>
     <Routes>
     <Route path='/' element={<Home/>}/>
@@ -28,14 +30,15 @@ export default function App() {
 
         {/* <Route path='/login' element={<Login />} /> */}
         <Route path='/dashboard' element={<Dashboard />} />
+        
         <Route path='*' element={<Error />} />
     {/* <PrivateRoute path="/dashboard" component={Dashboard} /> */}
     {/* <Route path='/books/create' element={<CreateBook/>}/>
     <Route path='/books/details/:id' element={<ShowBook/>}/>
-    <Route path='books/edit/:id' element={<EditBook/>}/>
+    <Route path='bssooks/edit/:id' element={<EditBook/>}/>
   <Route path='books/delete/:id' element={<DeleteBook/>}/> */}
   </Routes>
-  </BrowserRouter>
+  {/* </BrowserRouter> */}
   <ToastContainer />
   </>
   )
