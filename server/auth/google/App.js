@@ -3,48 +3,46 @@ import session from "express-session";
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 import cors from "cors";
-// import { GoogleAuthUser } from "../google/model/userSchema.js";
 import dotenv from 'dotenv';
 import { User } from "../../models/UserModel.js";
-import UserRouter from "../../routes/UserRoute.js";
-// import GoogleRouter from "./routes/GoogleRoute.js";
+// import UserRouter from "../../routes/UserRoute.js";
 dotenv.config(); // Load variables from .env file
 
-const App = express();
+const Google = express();
 
 
 // Now you can access the variables like this:
-const clientid = process.env.CLIENT_ID;
-const clientsecret = process.env.CLIENT_SECRET;
+const googleclientid = process.env.GOOGLE_CLIENT_ID;
+const googleclientsecret = process.env.GOOGLE_CLIENT_SECRET;
 
-App.use(cors({
+Google.use(cors({
   origin: "http://localhost:3000",
   methods: "GET,POST,PUT,DELETE",
   credentials: true
 }));
-App.use(express.json());
+Google.use(express.json());
 
 
 // Add this middleware to fix the Cross-Origin-Opener-Policy error
-App.use((req, res, next) => {
+Google.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   next();
 });
 
 // setup session
-App.use(session({
-  secret:clientsecret,
+Google.use(session({
+  secret:googleclientsecret,
   resave: false,
   saveUninitialized: true,
 }));
 
 // setuppassport
-App.use(passport.initialize());
-App.use(passport.session());
+Google.use(passport.initialize());
+Google.use(passport.session());
 
 passport.use(new GoogleStrategy({
-  clientID: clientid,
-  clientSecret: clientsecret,
+  clientID: googleclientid,
+  clientSecret: googleclientsecret,
   callbackURL: "/auth/google/callback",
   scope: ["profile", "email"],
 }, async (accessToken, refreshToken, profile, done) => {
@@ -82,9 +80,9 @@ passport.deserializeUser((user, done) => {
 });
 
 // initial google oauth login
-App.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+Google.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
-App.get("/auth/google/callback", (req, res, next) => {
+Google.get("/auth/google/callback", (req, res, next) => {
   passport.authenticate("google", (err, user, info) => {
     if (err) {
       return next(err);
@@ -101,7 +99,7 @@ App.get("/auth/google/callback", (req, res, next) => {
   })(req, res, next);
 });
 
-App.get("/login/success", async (req, res) => {
+Google.get("/login/success", async (req, res) => {
   console.log(req.user)
   if (req.user) {
     res.status(200).json({ message: "user Login", user: req.user });
@@ -111,29 +109,15 @@ App.get("/login/success", async (req, res) => {
 });
 
 
-App.get("/logout",(req,res,next)=>{
+Google.get("/logout",(req,res,next)=>{
     req.logout(function(err){
       if(err){return next(err)}
       res.redirect("http://localhost:3000");
     })
   })
 
+export default Google;
   
-  // App.use("/users", GoogleRouter);
-  // App.use("/users", UserRouter);
-  
-
-export default App;
-  
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,13 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import { PORT, mongoDBurl } from "./Config.js";
 import UserRouter from "./routes/UserRoute.js";
-import App from "./auth/google/App.js";
+import Google from "./auth/google/App.js";
+
+Google.use("/users", UserRouter);
 
 
-App.use("/users", UserRouter);
-
-
-App.route("/").get((req, res) => {
+Google.route("/").get((req, res) => {
     return res.json({
       message: "A simple API"
     });
@@ -18,7 +17,7 @@ App.route("/").get((req, res) => {
     .connect(mongoDBurl)
     .then(() => {
       console.log("App connected to database");
-      App.listen(PORT, () => {
+      Google.listen(PORT, () => {
         console.log(`Server is running at ${PORT}`);
       });
     })
@@ -26,4 +25,3 @@ App.route("/").get((req, res) => {
       console.log(error);
     });
     
-

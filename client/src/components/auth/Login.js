@@ -109,6 +109,11 @@ if (authenticatedUser) {
     window.open("http://localhost:6001/auth/google/callback","_self")
 }
 
+  const loginwithfacebook = ()=>{
+    
+    window.open("http://localhost:6001/auth/facebook/callback","_self")
+}
+
 
 
     return (
@@ -154,9 +159,14 @@ if (authenticatedUser) {
                                 <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
                             </p>
 
-                            <div onClick={loginwithgoogle} className='login_continue  py-2 md:px-10 px-6 flex items-center justify-center gap-2 rounded-full bg-cream-220 border border-cream-250'>
+                            <div onClick={loginwithgoogle} className='login_continue mb-3  py-2 md:px-10 px-6 flex items-center justify-center gap-2 rounded-full bg-cream-220 border border-cream-250'>
             <img src={commonImagePath("Social_media_Google_logo.svg")} alt="Social_media_Google_logo"  />
               <p className={`${classes.login_continue_p} text-#333333`}>Continue with Google</p>
+            
+            </div>
+                            <div onClick={()=>{}} className='login_continue  py-2 md:px-10 px-6 flex items-center justify-center gap-2 rounded-full bg-cream-220 border border-cream-250'>
+            <img src={commonImagePath("Social_media_Facebook_logo.svg")} alt="Social_media_Facebook_logo"  />
+              <p className={`${classes.login_continue_p} text-#333333`}>Continue with Facebook</p>
             
             </div>
                         </div>
