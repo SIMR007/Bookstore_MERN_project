@@ -30,7 +30,7 @@ const Navbar = () => {
             <header>
                 <nav>
                     <div className="left">
-                        <h1>Harsh Pathak</h1>
+                        <h1>Bookstore App</h1>
                     </div>
                     <div className="right">
                         <ul>
