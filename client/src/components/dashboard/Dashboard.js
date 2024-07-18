@@ -1,39 +1,40 @@
 // import axios from 'axios';
 import React from 'react'
 import Sidebar from './sidebar'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-// //  const getUser = async () => {
-// //    try {
-// //        const response = await fetch("http://localhost:6001/login/success", { withCredentials: true });
+//  const getUser = async () => {
+//    try {
+//        const response = await fetch("http://localhost:6001/login/success", { withCredentials: true });
 
-//  //       console.log("response",response)
-//   //  } catch (error) {
-//  //     navigate("*")
-//   //  }
-// // }
-
-
-// const getUser = async () => {
-//   try {
-//     const response = await fetch("http://localhost:6001/login/success", {
-//       credentials: 'include' // Include credentials in the request
-//     });
-//     console.log("response", await response.json());
-//   } catch (error) {
-//     navigate("*");
-//   }
+ //       console.log("response",response)
+  //  } catch (error) {
+ //     navigate("*")
+  //  }
 // }
 
 
+const getUser = async () => {
+  try {
+    const response = await fetch("http://localhost:6001/login/success", {
+      credentials: 'include' // Include credentials in the request
+    });
+    console.log("response", await response.json());
+  } catch (error) {
+    navigate("*");
+  }
+}
 
-// useEffect(() => {
-//   getUser()
-// }, [])
+
+
+useEffect(() => {
+  getUser()
+}, [])
 
   return <>
     <div style={{textAlign:"center"}}>
